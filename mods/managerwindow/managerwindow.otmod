@@ -1,0 +1,14 @@
+Module
+  name: ManagerWindow
+  description: Manager Window for gamemasters.
+  author: Snowsz
+  website: 
+  version: 1.0
+
+  autoload: true
+  autoload-priority: 1000
+
+  scripts: [ managerwindow ]
+  sandboxed: true
+  @onLoad: init()
+  @onUnload: terminate()

@@ -1,0 +1,483 @@
+MainWindow
+  id: cooldownWindow
+  !text: tr('Manager Window')
+  height: 400
+  width: 400
+  @onEnter: ManagerClose()
+  @onEscape: ManagerClose()
+  &save: true
+  opacity: 0.90
+  color: white
+
+  UIImageView
+    id: icon
+    image-source: SpellBar.png
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: -30
+    margin-left: -10
+
+  Button
+    id: reload
+    !text: tr('Reload')
+    color: white
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 10
+    margin-left: 153
+    height: 22
+    width: 60
+    @onClick: reload()
+
+  Button
+    id: use
+    !text: tr(' Use')
+    color: white
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 10
+    margin-left: 223
+    height: 22
+    width: 40
+    @onClick: use()
+
+  Button
+    id: addskillbutton
+    !text: tr('Addskill')
+    color: white
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 100
+    margin-left: 153
+    height: 22
+    width: 120
+    @onClick: addskill()
+
+  Button
+    id: addskillclear
+    !text: tr('X')
+    color: white
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 40
+    margin-left: 275
+    height: 23
+    width: 20
+    @onClick: self:getParent():getChildById("nametext"):setText('')
+
+  Button
+    id: countclear
+    !text: tr('X')
+    color: white
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 70
+    margin-left: 275
+    height: 23
+    width: 20
+    @onClick: self:getParent():getChildById("counttext"):setText('')
+
+  CheckBox
+    id: addlevelbox
+    !title: tr('Teste')
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 130
+    margin-left: 153
+
+  Label
+    id: addlevellabel
+    !text: tr(" Level")
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 130
+    margin-left: 165
+    color: white
+
+  CheckBox
+    id: addswordbox
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 150
+    margin-left: 153
+
+  Label
+    id: addswordlabel
+    !text: tr(" Sword")
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 150
+    margin-left: 165
+    color: white
+
+  CheckBox
+    id: addclubbox
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 170
+    margin-left: 153
+
+  Label
+    id: addclublabel
+    !text: tr(" Club")
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 170
+    margin-left: 165
+    color: white
+
+  CheckBox
+    id: addaxebox
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 190
+    margin-left: 153
+
+  Label
+    id: addaxelabel
+    !text: tr(" Axe")
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 190
+    margin-left: 165
+    color: white
+
+  CheckBox
+    id: adddistancebox
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 210
+    margin-left: 153
+
+  Label
+    id: adddistancelabel
+    !text: tr(" Distance")
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 210
+    margin-left: 165
+    color: white
+
+  CheckBox
+    id: addshieldbox
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 230
+    margin-left: 153
+
+  Label
+    id: addshieldlabel
+    !text: tr(" Shield")
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 230
+    margin-left: 165
+    color: white
+
+  CheckBox
+    id: addfishingbox
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 250
+    margin-left: 153
+
+  Label
+    id: addfishinglabel
+    !text: tr(" Fishing")
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 250
+    margin-left: 165
+    color: white
+
+  CheckBox
+    id: addfistbox
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 270
+    margin-left: 153
+
+  Label
+    id: addfistlabel
+    !text: tr(" Fist")
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 270
+    margin-left: 165
+    color: white
+
+  CheckBox
+    id: addmagbox
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 290
+    margin-left: 153
+
+  Label
+    id: addmaglabel
+    !text: tr(" Magic")
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 290
+    margin-left: 165
+    color: white
+
+  Label
+    id: namelabel
+    !text: tr(" Name:")
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 44
+    margin-left: 109
+    color: white
+
+  Label
+    id: namelabelex
+    !text: tr(" Player Name")
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 44
+    margin-left: 160
+    color: white
+
+  TextEdit
+    id: nametext
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 40
+    margin-left: 153
+    width: 120
+
+  Label
+    id: countlabel
+    !text: tr(" Count:")
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 74
+    margin-left: 109
+    color: white
+
+  TextEdit
+    id: counttext
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 70
+    margin-left: 153
+    width: 120
+
+  Button
+    id: close
+    !text: tr(' Close')
+    color: white
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 0
+    margin-left: 325
+    height: 22
+    width: 50
+    @onClick: ManagerClose()
+    !tooltip: tr('Close this window.')
+
+  Button
+    id: commands
+    !text: tr('Commands')
+    color: white
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 0
+    margin-left: 0
+    height: 22
+    width: 70
+    @onClick: g_game.talk("/commands")
+    !tooltip: tr('Show commands list.')
+
+  Button
+    id: clear
+    !text: tr('Clear')
+    color: white
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 25
+    margin-left: 20
+    height: 22
+    width: 50
+    @onClick: clear()
+
+  Label
+    id: alabel
+    !text: tr("/a")
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 52
+    margin-left: 0
+    color: white
+
+  TextEdit
+    id: atext
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 50
+    margin-left: 20
+    width: 50
+
+
+
+  Button
+    id: ago
+    !text: tr('Ok')
+    color: white
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 50
+    margin-left: 70
+    height: 22
+    width: 30
+    @onClick: g_game.talk("/a "..self:getParent():getChildById("atext"):getText().."")
+
+  Label
+    id: rlabel
+    !text: tr("/r")
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 82
+    margin-left: 0
+    color: white
+
+  TextEdit
+    id: rtext
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 80
+    margin-left: 20
+    width: 50
+
+  Button
+    id: rgo
+    !text: tr('Ok')
+    color: white
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 80
+    margin-left: 70
+    height: 22
+    width: 30
+    @onClick: g_game.talk("/r "..self:getParent():getChildById("rtext"):getText().."")
+
+  Label
+    id: mlabel
+    !text: tr("/m")
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 112
+    margin-left: 0
+    color: white
+
+
+  TextEdit
+    id: mtext
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 110
+    margin-left: 20
+    width: 50
+
+  Button
+    id: mgo
+    !text: tr('Ok')
+    color: white
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 110
+    margin-left: 70
+    height: 22
+    width: 30
+    @onClick: g_game.talk("/m "..self:getParent():getChildById("mtext"):getText().."")
+
+  Label
+    id: slabel
+    !text: tr("/s")
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 142
+    margin-left: 0
+    color: white
+
+
+  TextEdit
+    id: stext
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 140
+    margin-left: 20
+    width: 50
+
+  Button
+    id: sgo
+    !text: tr('Ok')
+    color: white
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 140
+    margin-left: 70
+    height: 22
+    width: 30
+    @onClick: g_game.talk("/s "..self:getParent():getChildById("stext"):getText().."")
+
+  Label
+    id: ilabel
+    !text: tr("/i")
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 172
+    margin-left: 0
+    color: white
+
+  TextEdit
+    id: itext
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 170
+    margin-left: 20
+    width: 50
+
+  Button
+    id: igo
+    !text: tr('Ok')
+    color: white
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 170
+    margin-left: 70
+    height: 22
+    width: 30
+    @onClick: g_game.talk("/i "..self:getParent():getChildById("itext"):getText().."")
+
+  Label
+    id: nlabel
+    !text: tr("/n")
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 202
+    margin-left: 0
+    color: white
+
+
+  TextEdit
+    id: ntext
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 200
+    margin-left: 20
+    width: 50
+
+  Button
+    id: ngo
+    !text: tr('Ok')
+    color: white
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 200
+    margin-left: 70
+    height: 22
+    width: 30
+    @onClick: g_game.talk("/n "..self:getParent():getChildById("ntext"):getText().."")

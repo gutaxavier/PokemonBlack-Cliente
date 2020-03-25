@@ -1,0 +1,148 @@
+== application crashed
+app name: Pokemon Gold
+app version: 0.6.6
+build compiler: gcc 4.8.1
+build date: Jun 23 2018
+build type: release
+build revision: 0 (devel)
+crash date: Oct 13 2018 11:27:26
+exception: Integer divide by zero (0xc0000094)
+exception address: 0x00424ac7
+  backtrace:
+    0: C:\Users\Marcelo\Desktop\[NEW] United Update 2.3\otpdx9.exe [0x0000000000424AC7]
+    1: C:\Users\Marcelo\Desktop\[NEW] United Update 2.3\otpdx9.exe [0x0000000000424C63]
+    2: C:\Users\Marcelo\Desktop\[NEW] United Update 2.3\otpdx9.exe [0x000000000043842A]
+    3: C:\Users\Marcelo\Desktop\[NEW] United Update 2.3\otpdx9.exe [0x000000000042ECFC]
+    4: C:\Users\Marcelo\Desktop\[NEW] United Update 2.3\otpdx9.exe [0x000000000044B44F]
+    5: C:\Users\Marcelo\Desktop\[NEW] United Update 2.3\otpdx9.exe [0x000000000046E6B0]
+    6: C:\Users\Marcelo\Desktop\[NEW] United Update 2.3\otpdx9.exe [0x000000000046E543]
+    7: C:\Users\Marcelo\Desktop\[NEW] United Update 2.3\otpdx9.exe [0x000000000046E715]
+    8: C:\Users\Marcelo\Desktop\[NEW] United Update 2.3\otpdx9.exe [0x000000000046E543]
+    9: C:\Users\Marcelo\Desktop\[NEW] United Update 2.3\otpdx9.exe [0x000000000046E715]
+    10: C:\Users\Marcelo\Desktop\[NEW] United Update 2.3\otpdx9.exe [0x000000000049D9E4]
+    11: C:\Users\Marcelo\Desktop\[NEW] United Update 2.3\otpdx9.exe [0x000000000047938E]
+    12: C:\Users\Marcelo\Desktop\[NEW] United Update 2.3\otpdx9.exe(alGetListeneriv+0x252745) [0x0000000000722FD5]
+    13: C:\Users\Marcelo\Desktop\[NEW] United Update 2.3\otpdx9.exe [0x0000000000401250]
+    14: C:\Users\Marcelo\Desktop\[NEW] United Update 2.3\otpdx9.exe [0x00000000004012D5]
+    15: C:\Windows\SYSTEM32\ntdll.dll(RtlInitializeExceptionChain+0x84) [0x0000000076EFA8CB]
+    16: C:\Windows\SYSTEM32\ntdll.dll(RtlInitializeExceptionChain+0x5a) [0x0000000076EFA8A1]
+
+== application crashed
+app name: Pokemon Gold
+app version: 0.6.6
+build compiler: gcc 4.8.1
+build date: Jun 23 2018
+build type: release
+build revision: 0 (devel)
+crash date: Oct 18 2018 18:02:56
+exception: Integer divide by zero (0xc0000094)
+exception address: 0x0041c766
+  backtrace:
+    0: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe [0x000000000041C766]
+    1: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe [0x000000000042578C]
+    2: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe [0x000000000041C93A]
+    3: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe [0x000000000041BBD8]
+    4: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe [0x0000000000425B02]
+    5: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe [0x0000000000422956]
+    6: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe(alGetListeneriv+0x1f6488) [0x00000000006C6D18]
+    7: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe(alGetListeneriv+0x1fea66) [0x00000000006CF2F6]
+    8: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe [0x0000000000458D9C]
+    9: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe(alGetListeneriv+0x3650b) [0x0000000000506D9B]
+    10: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe(alGetListeneriv+0x3e524) [0x000000000050EDB4]
+    11: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe(alGetListeneriv+0x36990) [0x0000000000507220]
+    12: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe(alGetListeneriv+0x32ed0) [0x0000000000503760]
+
+== application crashed
+app name: Pokemon Gold
+app version: 0.6.6
+build compiler: gcc 4.8.1
+build date: Jun 23 2018
+build type: release
+build revision: 0 (devel)
+crash date: Oct 21 2018 16:02:12
+exception: Integer divide by zero (0xc0000094)
+exception address: 0x0041c766
+  backtrace:
+    0: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe [0x000000000041C766]
+    1: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe [0x000000000042578C]
+    2: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe [0x000000000041C93A]
+    3: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe [0x000000000041BBD8]
+    4: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe [0x0000000000425B02]
+    5: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe [0x0000000000422FD5]
+    6: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe [0x0000000000427826]
+    7: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe(alGetListeneriv+0x238728) [0x0000000000708FB8]
+    8: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe(alGetListeneriv+0x1f65c9) [0x00000000006C6E59]
+    9: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe(alGetListeneriv+0x243520) [0x0000000000713DB0]
+    10: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe(alGetListeneriv+0x1fec8a) [0x00000000006CF51A]
+    11: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe [0x0000000000458D9C]
+    12: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe(alGetListeneriv+0x3650b) [0x0000000000506D9B]
+    13: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe(alGetListeneriv+0x3694c) [0x00000000005071DC]
+    14: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe(alGetListeneriv+0x385cb) [0x0000000000508E5B]
+    15: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe(alGetListeneriv+0x3e047) [0x000000000050E8D7]
+    16: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe(alGetListeneriv+0x3f532) [0x000000000050FDC2]
+    17: C:\Windows\SYSTEM32\msvcrt.dll(malloc+0x57) [0x00000000753F9AD1]
+    18: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe(alGetListeneriv+0x36990) [0x0000000000507220]
+
+== application crashed
+app name: Pokemon Gold
+app version: 0.6.6
+build compiler: gcc 4.8.1
+build date: Jun 23 2018
+build type: release
+build revision: 0 (devel)
+crash date: Oct 21 2018 16:08:25
+exception: Integer divide by zero (0xc0000094)
+exception address: 0x0041c766
+  backtrace:
+    0: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe [0x000000000041C766]
+    1: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe [0x000000000042578C]
+    2: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe [0x000000000041C93A]
+    3: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe [0x000000000041BBD8]
+    4: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe [0x0000000000425B02]
+    5: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe [0x0000000000422956]
+    6: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe(alGetListeneriv+0x1f6488) [0x00000000006C6D18]
+    7: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe(alGetListeneriv+0x1fea66) [0x00000000006CF2F6]
+    8: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe [0x0000000000458D9C]
+    9: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe(alGetListeneriv+0x3650b) [0x0000000000506D9B]
+    10: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe(alGetListeneriv+0x3e524) [0x000000000050EDB4]
+    11: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe(alGetListeneriv+0x36990) [0x0000000000507220]
+    12: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR DX9.exe(alGetListeneriv+0x32ed0) [0x0000000000503760]
+
+== application crashed
+app name: Pokemon Gold
+app version: 0.6.6
+build compiler: gcc 4.8.1
+build date: Jun 23 2018
+build type: release
+build revision: 0 (devel)
+crash date: Nov 23 2018 16:08:33
+exception: Integer divide by zero (0xc0000094)
+exception address: 0x0041c766
+  backtrace:
+    0: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR OpenGL.exe [0x000000000041C766]
+    1: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR OpenGL.exe [0x000000000041C4B9]
+    2: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR OpenGL.exe [0x000000000041C93A]
+    3: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR OpenGL.exe [0x000000000041BBD8]
+    4: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR OpenGL.exe [0x000000000041D11E]
+    5: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR OpenGL.exe [0x0000000000439B1C]
+    6: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR OpenGL.exe [0x000000000042A409]
+    7: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR OpenGL.exe [0x0000000000445C56]
+    8: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR OpenGL.exe [0x00000000004461AA]
+    9: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR OpenGL.exe [0x000000000043F99C]
+    10: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR OpenGL.exe [0x000000000047EA8D]
+    11: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR OpenGL.exe(alGetListeneriv+0x206578) [0x00000000006D6E08]
+    12: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR OpenGL.exe [0x000000000047D9E2]
+    13: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR OpenGL.exe(alGetListeneriv+0x19dba4) [0x000000000066E434]
+    14: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR OpenGL.exe(alGetListeneriv+0x1803d2) [0x0000000000650C62]
+    15: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR OpenGL.exe(alGetListeneriv+0x17e8f4) [0x000000000064F184]
+    16: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR OpenGL.exe(alGetListeneriv+0x17e236) [0x000000000064EAC6]
+    17: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR OpenGL.exe(alGetListeneriv+0x17df57) [0x000000000064E7E7]
+    18: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR OpenGL.exe [0x000000000047C005]
+    19: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR OpenGL.exe [0x000000000044F8CB]
+    20: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR OpenGL.exe [0x00000000004790C2]
+    21: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR OpenGL.exe(alGetListeneriv+0x252745) [0x0000000000722FD5]
+    22: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR OpenGL.exe [0x0000000000401250]
+    23: C:\Users\Marcelo\Desktop\Mysterious NEW\PokéZR OpenGL.exe [0x00000000004012D5]
+    24: C:\Windows\SYSTEM32\ntdll.dll(RtlInitializeExceptionChain+0x84) [0x000000007748A8CB]
+    25: C:\Windows\SYSTEM32\ntdll.dll(RtlInitializeExceptionChain+0x5a) [0x000000007748A8A1]
+

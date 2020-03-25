@@ -196,7 +196,7 @@ end
 function onSkillChange(localPlayer, id, level, percent,hur)
 
   if id == 2 then
-	tourLabel:setText(tr('') .. ': ' .. string.format("%.3d",level))
+	tourLabel:setText(tr('Tournament') .. ':  ' .. string.format("%.3d",level))
 	--setSkillValue('skillId' .. id, level)
 	--setSkillPercent('skillId' .. id, percent, tr('You have %s percent to go', 100 - percent))
 	--onBaseSkillChange(localPlayer, id, localPlayer:getSkillBaseLevel(id))
@@ -284,11 +284,11 @@ function onManaChange(localPlayer, mana, maxMana)
 end
 
 function onSoulChange(localPlayer, soul)
-  soulLabel:setText(tr('') .. ': ' .. string.format("%.3d",soul))
+  soulLabel:setText(tr('Catch') .. ': ' .. string.format("%.3d",soul))
 end
 
 function onFreeCapacityChange(player, freeCapacity)
-  capLabel:setText(tr('') .. ': ' .. freeCapacity)
+  capLabel:setText(tr('Cap') .. ': ' .. freeCapacity)
 end
 
 

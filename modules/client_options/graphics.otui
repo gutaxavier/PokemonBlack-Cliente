@@ -40,13 +40,17 @@ Panel
     !text: tr('Fullscreen')
     tooltip: Ctrl+Shift+F
 
+  OptionCheckBox
+    id: dontStretchShrink
+    !text: tr('Don\'t stretch/shrink Game Window')
+
   Label
     id: backgroundFrameRateLabel
     !text: tr('Game framerate limit: %s', 'max')
     anchors.left: parent.left
     anchors.right: parent.right
     anchors.top: prev.bottom
-    margin-top: 6
+    margin-top: 12
     @onSetup: |
       local value = modules.client_options.getOption('backgroundFrameRate')
       local text = value

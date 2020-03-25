@@ -1,13 +1,27 @@
-EnterGameWindow < MainWindow
-  !text: tr('Enter Game')
-  size: 236 274
+EnterGameWindow < HeadlessWindow
+  anchors.centerIn: parent
+  size: 390 390
+  padding: 70
+  image-source: enter.png
 
 EnterGameButton < Button
-  width: 64
+  image-source: botao.png
+  width: 70
+  height: 35
+  margin-right: 0
+  margin-bottom: 55
+  image-clip: 0 0 20 20
+  image-border: 2
+  image-color: #ffffffff
+  $hover:
+    image-clip: 0 20 20 20
+  $pressed:
+    image-clip: 0 40 20 20
+  $disabled:
+    image-color: #ffffff66
 
 ServerListButton < UIButton
   size: 17 17
-  image-source: /images/topbuttons/minimap
   image-color: #ffffffff
 
   $hover !disabled:
@@ -27,8 +41,9 @@ EnterGameWindow
     !text: tr('Account name')
     anchors.left: parent.left
     anchors.top: parent.top
-    text-auto-resize: true
-
+    text-auto-resize: true   
+    margin-top: 70
+    
   PasswordTextEdit
     id: accountNameTextEdit
     anchors.left: parent.left
@@ -68,7 +83,7 @@ EnterGameWindow
 
   TextEdit
     id: serverHostTextEdit
-    !tooltip: tr('Make sure that your client uses\nthe correct game protocol version')
+    !tooltip: tr('Make sure that your client uses\nthe correct game client version')
     anchors.left: parent.left
     anchors.right: serverListButton.left
     anchors.top: serverLabel.bottom
@@ -76,8 +91,8 @@ EnterGameWindow
     margin-right: 4
 
   MenuLabel
-    id: protocolLabel
-    !text: tr('Protocol')
+    id: clientLabel
+    !text: tr('Client Version')
     anchors.left: parent.left
     anchors.top: serverHostTextEdit.bottom
     text-auto-resize: true
@@ -85,17 +100,13 @@ EnterGameWindow
     margin-top: 8
 
   ComboBox
-    id: protocolComboBox
+    id: clientComboBox
     anchors.left: parent.left
     anchors.right: parent.horizontalCenter
-    anchors.top: protocolLabel.bottom
+    anchors.top: clientLabel.bottom
     margin-top: 2
     margin-right: 3
     width: 90
-    @onSetup: |
-      for _, proto in pairs(g_game.getSupportedProtocols()) do
-        self:addOption(proto)
-      end
 
   MenuLabel
     id: portLabel
@@ -110,7 +121,7 @@ EnterGameWindow
     text: 7171
     anchors.right: parent.right
     anchors.left: parent.horizontalCenter
-    anchors.top: protocolComboBox.top
+    anchors.top: clientComboBox.top
     margin-left: 3
 
   CheckBox
@@ -120,7 +131,8 @@ EnterGameWindow
     anchors.left: parent.left
     anchors.right: parent.right
     anchors.top: prev.bottom
-    margin-top: 10
+    margin-top: 5
+    margin-left: 0
     @onCheckChange: self:getParent():getChildById('autoLoginBox'):setEnabled(self:isChecked())
 
   CheckBox
@@ -131,10 +143,11 @@ EnterGameWindow
     anchors.left: parent.left
     anchors.right: parent.right
     anchors.top: prev.bottom
-    margin-top: 2
+    margin-top: 0
+    margin-left: 0
 
   EnterGameButton
-    !text: tr('Ok')
+    !text: tr('Login')
     anchors.right: parent.right
     anchors.bottom: parent.bottom
     @onClick: EnterGame.doLogin()

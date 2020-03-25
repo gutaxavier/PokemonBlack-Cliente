@@ -1,36 +1,20 @@
 HealthBar < ProgressBar
   id: healthBar
-  image-source: progressbar.png
-  height: 
-  margin-top: 3
-  margin-left: 32
-  margin-right: 4
+  height: 15
+  margin-top: -1
+  margin-left: 2
   background-color: #ff4444
   anchors.top: outfitCreatureBox.bottom
   anchors.left: parent.left
   anchors.right: parent.right
 XPBAR < ProgressBar
   id: expbar
-  image-source: progressbar.png
-  height: 16
-  margin-top: 2
-  margin-left: 32
-  margin-right: 4
+  height: 14
   background-color: #44ff44
-  anchors.top: healthBar.bottom
+  anchors.top: xplabels.bottom
   anchors.left: parent.left
   anchors.right: parent.right
-FISHBAR < ProgressBar
-  id: fishbar
-  image-source: progressbar.png
-  height: 16
-  margin-top: 2
-  margin-left: 32
-  margin-right: 4
-  background-color: #44ff44
-  anchors.top: expbar.bottom
-  anchors.left: parent.left
-  anchors.right: parent.right
+  margin-top: 4
 explabel < GameLabel
   id: expeLabel
   color: white
@@ -40,6 +24,7 @@ explabel < GameLabel
   margin-top: 2
   text: 0 / 0
   margin-top: 4
+
 HealthLabel < GameLabel
   id: healthLabel
   color: white
@@ -48,14 +33,6 @@ HealthLabel < GameLabel
   anchors.fill: healthBar
   margin-top: 2
   text: 0 / 0
-FishLabel < GameLabel
-  id: fishlab
-  color: white
-  text-align: center
-  font: verdana-11px-rounded
-  anchors.fill: fishbar
-  margin-top: 2
-  text: fishing:
 
 
 
@@ -81,6 +58,56 @@ CapLabel < GameLabel
   margin-top: 5
   margin-left: 3
   text: Cap:
+TournamentLabel < GameLabel
+  id: tourlab
+  color: white
+  font: verdana-11px-rounded
+  anchors.top: prev.bottom
+  anchors.left: parent.left
+  anchors.right: parent.right
+  margin-top: 2
+  margin-left: 3
+  text: Tournament: 000
+Fishlabel < GameLabel
+  id: fishlab
+  color: white
+  font: verdana-11px-rounded
+  anchors.top: tourlab.bottom
+  anchors.left: parent.left
+  anchors.right: parent.horizontalCenter
+  margin-top: 2
+  margin-left: 3
+  text: Fishing:
+FISHBAR < ProgressBar
+  id: fishbar
+  height: 5
+  background-color: #44ff44
+  anchors.top: prev.bottom
+  anchors.left: parent.left
+  anchors.right: parent.right
+  margin-top: 1
+HealthLabel2 < GameLabel
+  id: hplab
+  color: white
+  font: verdana-11px-rounded
+  anchors.top: outfitCreatureBox.bottom
+  anchors.left: parent.left
+  margin-top: 4
+  margin-left: 3
+  text: -
+
+
+
+XPLABB < GameLabel
+  id: xplabels
+  color: white
+  font: verdana-11px-rounded
+  anchors.top: call1.bottom
+  anchors.left: parent.left
+  margin-top: 4
+  margin-left: 3
+  !text: tr('Experience')
+
 
 ConditionWidget < UIWidget
   size: 18 18
@@ -89,11 +116,10 @@ ConditionWidget < UIWidget
     margin-left: 2
 
 MiniWindow
-  image-source: infow.png
   icon: healthinfo.png
   id: healthInfoWindow
   !text: tr('Health Info')
-  height: 202
+  height: 253
   @onClose: modules.game_healthinfo.onMiniWindowClose()
   &save: true
 
@@ -111,62 +137,12 @@ MiniWindow
     HealthLabel
     GameLabel
       color: white
-      id: naem
-      font: verdana-11px-rounded
-      anchors.top: parent.top
-      anchors.left: outfitCreatureBox.right
-      anchors.right: parent.right
-      margin-top: 5
-      margin-left: 3
-      text: -------
-    GameLabel
-      color: white
-      id: laevl
-      font: verdana-11px-rounded
-      anchors.top: prev.bottom
-      anchors.left: outfitCreatureBox.right
-      anchors.right: parent.right
-      margin-left: 3
-      text: Lvl: 0000
-    GameLabel
-      id: tourlab
-      color: white
-      font: verdana-11px-rounded
-      anchors.top: prev.bottom
-      anchors.left: outfitCreatureBox.right
-      anchors.right: parent.right
-      margin-top: 6
-      margin-left: 19
-    GameLabel
-      id: soulLabel
-      color: white
-      font: verdana-11px-rounded
-      anchors.top: prev.bottom
-      anchors.left: outfitCreatureBox.right
-      anchors.right: parent.right
-      margin-top: 0
-      margin-left: 19
-    GameLabel
-      id: capLabel
-      color: white
-      font: verdana-11px-rounded
-      anchors.top: prev.bottom
-      anchors.left: outfitCreatureBox.right
-      anchors.right: parent.right
-      margin-top: 2
-      margin-left: 19
-    XPBAR
-    explabel
-    FISHBAR
-    FishLabel
-    GameLabel
-      color: white
       id: laevla
       font: terminus-14px-bold
       anchors.top: prev.bottom
       anchors.left: parent.left
-      margin-top: 1
-      margin-left: 17
+      margin-top: 5
+      margin-left: 3
       text: Pokemon:
     GameLabel
       id: call1
@@ -211,16 +187,44 @@ MiniWindow
       margin-right: 3
       image-source: bolas.png
       size: 16 16
+    GameLabel
+      color: white
+      id: naem
+      font: verdana-11px-rounded
+      anchors.top: parent.top
+      anchors.left: outfitCreatureBox.right
+      anchors.right: parent.right
+      margin-top: 5
+      margin-left: 3
+      text: -------
+    GameLabel
+      color: white
+      id: laevl
+      font: terminus-14px-bold
+      anchors.top: prev.bottom
+      anchors.left: outfitCreatureBox.right
+      anchors.right: parent.right
+      margin-top: 5
+      margin-left: 3
+      text: Lvl: 0000
+    XPLABB
+    XPBAR
+    explabel
     Panel
       id: conditionPanel
       layout:
         type: horizontalBox
       height: 22
+      margin-top: 4
       padding: 2
-      margin-top: 2
       anchors.top: prev.bottom
       anchors.left: parent.left
       anchors.right: parent.right
       border-width: 1
       border-color: #00000077
       background-color: #ffffff11
+    TournamentLabel
+    Fishlabel
+    FISHBAR
+    SoulLabel
+    CapLabel

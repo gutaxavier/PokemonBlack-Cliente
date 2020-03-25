@@ -39,7 +39,7 @@ hotkeysList = {}
 
 -- public functions
 function init()
-  hotkeysButton = modules.client_topmenu.addCustomLeftButton('hotkeysButton', tr('Hotkeys') .. ' (Ctrl+K)', '/images/ui/pxg/topMenu_icons/atalhos_icon', toggle, false)
+  hotkeysButton = modules.client_topmenu.addLeftGameButton('hotkeysButton', tr('Hotkeys') .. ' (Ctrl+K)', '/images/topbuttons/hotkeys', toggle)
   g_keyboard.bindKeyDown('Ctrl+K', toggle)
   hotkeysWindow = g_ui.displayUI('hotkeys_manager')
   hotkeysWindow:setVisible(false)
@@ -72,7 +72,7 @@ function init()
   g_keyboard.bindKeyPress('Down', function() currentHotkeys:focusNextChild(KeyboardFocusReason) end, hotkeysWindow)
   g_keyboard.bindKeyPress('Up', function() currentHotkeys:focusPreviousChild(KeyboardFocusReason) end, hotkeysWindow)
 
-  connect(g_game, { 
+  connect(g_game, {
     onGameStart = online,
     onGameEnd = offline
   })
@@ -216,6 +216,7 @@ function save()
     hotkeys[child.keyCombo] = {
       autoSend = child.autoSend,
       itemId = child.itemId,
+      subType = child.subType,
       useType = child.useType,
       value = child.value
     }
@@ -250,7 +251,7 @@ function onChooseItemMouseRelease(self, mousePosition, mouseButton)
   if mouseButton == MouseLeftButton then
     local clickedWidget = modules.game_interface.getRootPanel():recursiveGetChildByPos(mousePosition, false)
     if clickedWidget then
-      if clickedWidget:getClassName() == 'UIMap' then
+      if clickedWidget:getClassName() == 'UIGameMap' then
         local tile = clickedWidget:getTile(mousePosition)
         if tile then
           local thing = tile:getTopMoveThing()
@@ -266,6 +267,9 @@ function onChooseItemMouseRelease(self, mousePosition, mouseButton)
 
   if item and currentHotkeyLabel then
     currentHotkeyLabel.itemId = item:getId()
+    if item:isFluidContainer() then
+        currentHotkeyLabel.subType = item:getSubType()
+    end
     if item:isMultiUse() then
       currentHotkeyLabel.useType = HOTKEY_MANAGER_USEWITH
     else
@@ -293,6 +297,7 @@ end
 
 function clearObject()
   currentHotkeyLabel.itemId = nil
+  currentHotkeyLabel.subType = nil
   currentHotkeyLabel.useType = nil
   currentHotkeyLabel.autoSend = nil
   currentHotkeyLabel.value = nil
@@ -340,12 +345,14 @@ function addKeyCombo(keyCombo, keySettings, focus)
       hotkeyLabel.keyCombo = keyCombo
       hotkeyLabel.autoSend = toboolean(keySettings.autoSend)
       hotkeyLabel.itemId = tonumber(keySettings.itemId)
+      hotkeyLabel.subType = tonumber(keySettings.subType)
       hotkeyLabel.useType = tonumber(keySettings.useType)
       if keySettings.value then hotkeyLabel.value = tostring(keySettings.value) end
     else
       hotkeyLabel.keyCombo = keyCombo
       hotkeyLabel.autoSend = false
       hotkeyLabel.itemId = nil
+      hotkeyLabel.subType = nil
       hotkeyLabel.useType = nil
       hotkeyLabel.value = ''
     end
@@ -375,15 +382,53 @@ function doKeyCombo(keyCombo)
       modules.game_console.setTextEditText(hotKey.value)
     end
   elseif hotKey.useType == HOTKEY_MANAGER_USE then
-    g_game.useInventoryItem(hotKey.itemId)
+    if g_game.getClientVersion() < 780 or hotKey.subType then
+      local item = g_game.findPlayerItem(hotKey.itemId, hotKey.subType or -1)
+      if item then
+        g_game.use(item)
+      end
+    else
+      g_game.useInventoryItem(hotKey.itemId)
+    end
   elseif hotKey.useType == HOTKEY_MANAGER_USEONSELF then
-    g_game.useInventoryItemWith(hotKey.itemId, g_game.getLocalPlayer())
+    if g_game.getClientVersion() < 780 or hotKey.subType then
+      local item = g_game.findPlayerItem(hotKey.itemId, hotKey.subType or -1)
+      if item then
+        g_game.useWith(item, g_game.getLocalPlayer())
+      end
+    else
+      g_game.useInventoryItemWith(hotKey.itemId, g_game.getLocalPlayer())
+    end
   elseif hotKey.useType == HOTKEY_MANAGER_USEONTARGET then
     local attackingCreature = g_game.getAttackingCreature()
-    if not attackingCreature then return end
-    g_game.useInventoryItemWith(hotKey.itemId, attackingCreature)
+    if not attackingCreature then
+      local item = Item.create(hotKey.itemId)
+      if g_game.getClientVersion() < 780 or hotKey.subType then
+        local tmpItem = g_game.findPlayerItem(hotKey.itemId, hotKey.subType or -1)
+        if not tmpItem then return end
+        item = tmpItem
+      end
+
+      modules.game_interface.startUseWith(item)
+      return
+    end
+
+    if not attackingCreature:getTile() then return end
+    if g_game.getClientVersion() < 780 or hotKey.subType then
+      local item = g_game.findPlayerItem(hotKey.itemId, hotKey.subType or -1)
+      if item then
+        g_game.useWith(item, attackingCreature)
+      end
+    else
+      g_game.useInventoryItemWith(hotKey.itemId, attackingCreature)
+    end
   elseif hotKey.useType == HOTKEY_MANAGER_USEWITH then
     local item = Item.create(hotKey.itemId)
+    if g_game.getClientVersion() < 780 or hotKey.subType then
+      local tmpItem = g_game.findPlayerItem(hotKey.itemId, hotKey.subType or -1)
+      if not tmpItem then return true end
+      item = tmpItem
+    end
     modules.game_interface.startUseWith(item)
   end
 end
@@ -428,9 +473,9 @@ function updateHotkeyForm(reset)
       selectObjectButton:disable()
       clearObjectButton:enable()
       currentItemPreview:setItemId(currentHotkeyLabel.itemId)
-      g_game.talk(currentHotkeyLabel.itemId)
-      
-      
+      if currentHotkeyLabel.subType then
+        currentItemPreview:setItemSubType(currentHotkeyLabel.subType)
+      end
       if currentItemPreview:getItem():isMultiUse() then
         useOnSelf:enable()
         useOnTarget:enable()

@@ -8,12 +8,12 @@ oldZoom = nil
 oldPos = nil
 
 function init()
-  minimapButton = modules.client_topmenu.addCustomRightButton('minimapButton', tr('Minimap') .. ' (Ctrl+M)', '/images/ui/pxg/topMenu_icons/minimap_icon', toggle, false)
+  minimapButton = modules.client_topmenu.addRightGameToggleButton('minimapButton', 
+    tr('Minimap') .. ' (Ctrl+M)', '/images/topbuttons/minimap', toggle)
   minimapButton:setOn(true)
-  minimapButton:setVisible(false)
 
   minimapWindow = g_ui.loadUI('minimap', modules.game_interface.getRightPanel())
-  minimapWindow:setContentMinimumHeight(64) 
+  minimapWindow:setContentMinimumHeight(64)
 
   minimapWidget = minimapWindow:recursiveGetChildById('minimap')
 
@@ -38,8 +38,6 @@ function init()
 
   if g_game.isOnline() then
     online()
-  setMonsterCave(948, 1498, 5, "teste", "Mew")
-  removeMonsterCave(948, 1498, 5, "teste", "Mew")
   end
 end
 
@@ -73,33 +71,10 @@ function toggle()
   if minimapButton:isOn() then
     minimapWindow:close()
     minimapButton:setOn(false)
-    minimapButton:setIcon('/images/ui/pxg/topMenu_icons/minimap_icon_apagado')
   else
     minimapWindow:open()
     minimapButton:setOn(true)
-    minimapButton:setIcon('/images/ui/pxg/topMenu_icons/minimap_icon')
   end
-end
-
-function setMonsterCave(posx, posy, posz, icon, description)
-
-  local pos = {}
-  pos.x = posx
-  pos.y = posy
-  pos.z = posz
-
-  minimapWidget:addFlag(pos, icon, description)
-end
-
-
-function removeMonsterCave(posx, posy, posz, icon, description)
-
-  local pos = {}
-  pos.x = posx
-  pos.y = posy
-  pos.z = posz
-
-  minimapWidget:removeFlag(pos, icon, description)
 end
 
 function onMiniWindowClose()
@@ -114,16 +89,14 @@ end
 function online()
   loadMap(not preloaded)
   updateCameraPosition()
-  minimapButton:setVisible(true)
 end
 
 function offline()
   saveMap()
-  minimapButton:setVisible(false)
 end
 
 function loadMap(clean)
-  local protocolVersion = g_game.getProtocolVersion()
+  local clientVersion = g_game.getClientVersion()
 
   if clean then
     g_minimap.clean()
@@ -135,7 +108,7 @@ function loadMap(clean)
       g_minimap.loadOtmm(minimapFile)
     end
   else
-    local minimapFile = '/minimap_' .. protocolVersion .. '.otcm'
+    local minimapFile = '/minimap_' .. clientVersion .. '.otcm'
     if g_resources.fileExists(minimapFile) then
       g_map.loadOtcm(minimapFile)
     end
@@ -144,12 +117,12 @@ function loadMap(clean)
 end
 
 function saveMap()
-  local protocolVersion = g_game.getProtocolVersion()
+  local clientVersion = g_game.getClientVersion()
   if otmm then
     local minimapFile = '/minimap.otmm'
     g_minimap.saveOtmm(minimapFile)
   else
-    local minimapFile = '/minimap_' .. protocolVersion .. '.otcm'
+    local minimapFile = '/minimap_' .. clientVersion .. '.otcm'
     g_map.saveOtcm(minimapFile)
   end
   minimapWidget:save()

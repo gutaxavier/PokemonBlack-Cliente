@@ -1,7 +1,3 @@
-NormalTopButton < UIButton
-  size: 26 26
-  image-border: 3
-
 TopButton < UIButton
   size: 26 26
   image-source: /images/ui/button_top
@@ -40,14 +36,14 @@ TopToggleButton < UIButton
 TopMenuButtonsPanel < Panel
   layout:
     type: horizontalBox
-    spacing: 8
+    spacing: 4
     fit-children: true
   padding: 6 4
 
 TopMenuPanel < Panel
   height: 36
   image-source: /images/ui/panel_top
-  image-repeated: true
+  image-repeated: false
   focusable: false
 
 TopMenuFrameCounterLabel < Label

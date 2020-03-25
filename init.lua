@@ -27,8 +27,8 @@ g_resources.setupUserWriteDir(g_app.getCompactName())
 -- search all packages
 g_resources.searchAndAddPackages('/', '.otpkg', true)
 
--- load configurations
-g_configs.load("/config.otml")
+-- load settings
+g_configs.loadSettings("/config.otml")
 
 g_modules.discoverModules()
 
@@ -48,7 +48,7 @@ g_modules.ensureModuleLoaded("game_interface")
 -- mods 1000-9999
 g_modules.autoLoadModules(9999)
 
-local script = '/' .. g_app.getCompactName() .. 'rc'
+local script = '/' .. g_app.getCompactName() .. 'rc.lua'
 
 if g_resources.fileExists(script) then
   dofile(script)

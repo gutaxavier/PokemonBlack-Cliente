@@ -1,3 +1,7 @@
+function UIMinimap:onCreate()
+  self.autowalk = true
+end
+
 function UIMinimap:onSetup()
   self.flagWindow = nil
   self.floorUpWidget = self:getChildById('floorUp')
@@ -6,7 +10,6 @@ function UIMinimap:onSetup()
   self.zoomOutWidget = self:getChildById('zoomOut')
   self.flags = {}
   self.alternatives = {}
-  self.autowalk = true
   self.onAddAutomapFlag = function(pos, icon, description) self:addFlag(pos, icon, description) end
   self.onRemoveAutomapFlag = function(pos, icon, description) self:removeFlag(pos, icon, description) end
   connect(g_game, {
@@ -226,7 +229,6 @@ function UIMinimap:onMouseRelease(pos, button)
   elseif button == MouseRightButton then
     local menu = g_ui.createWidget('PopupMenu')
     menu:addOption(tr('Create mark'), function() self:createFlagWindow(mapPos) end)
-    menu:addOption(modules.game_minimap.fullmapView and tr('Normal Map') or tr('Full Map'), function() modules.game_minimap.toggleFullMap() end)
     menu:display(pos)
     return true
   end
@@ -252,6 +254,14 @@ function UIMinimap:onDragLeave(widget, pos)
   return true
 end
 
+function UIMinimap:onStyleApply(styleName, styleNode)
+  for name,value in pairs(styleNode) do
+    if name == 'autowalk' then
+      self.autowalk = value
+    end
+  end
+end
+
 function UIMinimap:createFlagWindow(pos)
   if self.flagWindow then return end
   if not pos then return end
@@ -274,11 +284,20 @@ function UIMinimap:createFlagWindow(pos)
 
   flagRadioGroup:selectWidget(flagRadioGroup:getFirstWidget())
 
-  okButton.onClick = function() 
+  local successFunc = function()
     self:addFlag(pos, flagRadioGroup:getSelectedWidget().icon, description:getText())
     self:destroyFlagWindow()
   end
-  cancelButton.onClick = function() self:destroyFlagWindow() end
+
+  local cancelFunc = function()
+    self:destroyFlagWindow()
+  end
+
+  okButton.onClick = successFunc
+  cancelButton.onClick = cancelFunc
+
+  self.flagWindow.onEnter = successFunc
+  self.flagWindow.onEscape = cancelFunc
 
   self.flagWindow.onDestroy = function() flagRadioGroup:destroy() end
 end

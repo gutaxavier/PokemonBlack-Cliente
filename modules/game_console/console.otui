@@ -56,12 +56,21 @@ Panel
   id: consolePanel
   anchors.fill: parent
 
+  CheckBox
+    id: toggleChat
+    !tooltip: tr('Disable chat mode, allow to walk using ASDW')
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-left: 13
+    margin-top: 8
+    @onCheckChange: toggleChat()
+
   TabButton
     id: prevChannelButton
     icon: /images/game/console/leftarrow
-    anchors.left: parent.left
+    anchors.left: toggleChat.right
     anchors.top: parent.top
-    margin-left: 6
+    margin-left: 3
     margin-top: 6
 
   ConsoleTabBar
@@ -71,6 +80,7 @@ Panel
     anchors.right: next.left
     margin-left: 5
     margin-top: 3
+    margin-right: 5
     moveable: true
 
   TabButton
@@ -123,7 +133,7 @@ Panel
     margin-right: 5
     margin-top: 6
     @onClick: onClickIgnoreButton()
-    
+
   Panel
     id: consoleContentPanel
     anchors.top: prev.bottom

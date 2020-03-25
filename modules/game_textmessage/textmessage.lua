@@ -70,7 +70,11 @@ end
 
 function displayMessage(mode, text)
   if not g_game.isOnline() then return end
-
+  if mode == 46 then
+    mode = 45
+  elseif mode == 44 then
+    mode = 43
+  end
   local msgtype = MessageTypes[mode]
 
   if not msgtype then

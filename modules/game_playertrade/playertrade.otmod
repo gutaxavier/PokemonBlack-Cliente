@@ -1,8 +1,8 @@
 Module
   name: game_playertrade
-  description: Trade System. Troca entre players
-  author: Mooney
-  website: none
+  description: Allow to trade items with players
+  author: edubart
+  website: www.otclient.info
   sandboxed: true
   scripts: [ playertrade ]
   @onLoad: init()

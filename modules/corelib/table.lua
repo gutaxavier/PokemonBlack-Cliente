@@ -55,7 +55,7 @@ end
 
 function table.find(t, value, lowercase)
   for k,v in pairs(t) do
-    if lowercase and type(value) == 'string' and type(v) == 'string' then 
+    if lowercase and type(value) == 'string' and type(v) == 'string' then
       if v:lower() == value:lower() then return k end
     end
     if v == value then return k end
@@ -64,7 +64,7 @@ end
 
 function table.findbykey(t, key, lowercase)
   for k,v in pairs(t) do
-    if lowercase and type(key) == 'string' and type(k) == 'string' then 
+    if lowercase and type(key) == 'string' and type(k) == 'string' then
       if k:lower() == key:lower() then return v end
     end
     if k == key then return v end
@@ -149,7 +149,7 @@ function table.size(t)
   for i, n in pairs(t) do
     size = size + 1
   end
- 
+
   return size
 end
 
@@ -157,6 +157,7 @@ function table.tostring(t)
   local maxn = #t
   local str = ""
   for k,v in pairs(t) do
+    v = tostring(v)
     if k == maxn and k ~= 1 then
       str = str .. " and " .. v
     elseif maxn > 1 and k ~= 1 then
@@ -181,3 +182,11 @@ function table.collect(t, func)
   return res
 end
 
+function table.equals(t, comp)
+  if type(t) == "table" and type(comp) == "table" then
+    for k,v in pairs(t) do
+      if v ~= comp[k] then return false end
+    end
+  end
+  return true
+end

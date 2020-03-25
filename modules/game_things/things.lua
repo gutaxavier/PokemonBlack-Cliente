@@ -2,11 +2,11 @@ filename =  nil
 loaded = false
 
 function init()
-  connect(g_game, { onProtocolVersionChange = load })
+  connect(g_game, { onClientVersionChange = load })
 end
 
 function terminate()
-  disconnect(g_game, { onProtocolVersionChange = load })
+  disconnect(g_game, { onClientVersionChange = load })
 end
 
 function setFileName(name)
@@ -18,9 +18,10 @@ function isLoaded()
 end
 
 function load()
- local version = g_game.getProtocolVersion()
-
- g_game.enableFeature(GameSpritesU32) local datPath, sprPath
+  local version = g_game.getClientVersion()
+  g_game.enableFeature(GameSpritesU32)
+ -- g_game.enableFeature(GameMagicEffectU16)
+  local datPath, sprPath
   if filename then
     datPath = resolvepath('/things/' .. filename)
     sprPath = resolvepath('/things/' .. filename)
@@ -38,14 +39,14 @@ function load()
   end
 
   loaded = (errorMessage:len() == 0)
-  g_game.enableFeature(GameDiagonalAnimatedText)
+
   if errorMessage:len() > 0 then
     local messageBox = displayErrorBox(tr('Error'), errorMessage)
     addEvent(function() messageBox:raise() messageBox:focus() end)
 
-    disconnect(g_game, { onProtocolVersionChange = load })
+    disconnect(g_game, { onClientVersionChange = load })
+    g_game.setClientVersion(0)
     g_game.setProtocolVersion(0)
-    connect(g_game, { onProtocolVersionChange = load })
+    connect(g_game, { onClientVersionChange = load })
   end
-  g_game.enableFeature(GameBlueNpcNameColor)
 end

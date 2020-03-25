@@ -1,7 +1,7 @@
 Module
   name: client_locales
   description: Translates texts to selected language
-  author: baxnie, edubart, SmiX
+  author: baxnie, edubart
   website: www.otclient.info
   sandboxed: true
   scripts: [ locales ]

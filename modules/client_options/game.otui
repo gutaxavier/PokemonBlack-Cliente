@@ -37,10 +37,6 @@ Panel
   OptionCheckBox
     id: displayText
     !text: tr('Display text messages')
-    
-  OptionCheckBox
-    id: autoLoot
-    !text: tr('Automatic Loot')
 
   Button
     id: changeLocale

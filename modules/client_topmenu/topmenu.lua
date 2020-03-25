@@ -6,11 +6,9 @@ local leftGameButtonsPanel
 local rightGameButtonsPanel
 
 -- private functions
-local function addButton(id, description, icon, callback, panel, toggle, front, normal)
+local function addButton(id, description, icon, callback, panel, toggle, front)
   local class
-  if normal then
-    class = 'NormalTopButton'
-  elseif toggle then
+  if toggle then
     class = 'TopToggleButton'
   else
     class = 'TopButton'
@@ -29,7 +27,7 @@ local function addButton(id, description, icon, callback, panel, toggle, front, 
   button:setTooltip(description)
   button:setIcon(resolvepath(icon, 3))
   button.onMouseRelease = function(widget, mousePos, mouseButton)
-    if widget:containsPoint(mousePos) and mouseButton ~= MouseMiddleButton then
+    if widget:containsPoint(mousePos) and mouseButton ~= MouseMidButton then
       callback()
       return true
     end
@@ -72,7 +70,7 @@ function online()
 
   addEvent(function()
     if modules.client_options.getOption('showPing') and (g_game.getFeature(GameClientPing) or g_game.getFeature(GameExtendedClientPing)) then
-      --pingLabel:show()
+      pingLabel:show()
     else
       pingLabel:hide()
     end
@@ -85,8 +83,8 @@ function offline()
 end
 
 function updateFps(fps)
-  --text = 'FPS: ' .. fps
-  --fpsLabel:setText(text)
+  text = 'FPS: ' .. fps
+  fpsLabel:setText(text)
 end
 
 function updatePing(ping)
@@ -105,16 +103,16 @@ function updatePing(ping)
       color = 'green'
     end
   end
-  --pingLabel:setColor(color)
-  --pingLabel:setText(text)
+  pingLabel:setColor(color)
+  pingLabel:setText(text)
 end
 
 function setPingVisible(enable)
-  --pingLabel:setVisible(enable)
+  pingLabel:setVisible(enable)
 end
 
 function setFpsVisible(enable)
-  --fpsLabel:setVisible(enable)
+  fpsLabel:setVisible(enable)
 end
 
 function addLeftButton(id, description, icon, callback, front)
@@ -123,14 +121,6 @@ end
 
 function addLeftToggleButton(id, description, icon, callback, front)
   return addButton(id, description, icon, callback, leftButtonsPanel, true, front)
-end
-
-function addCustomRightButton(id, description, icon, callback, front)     
-  return addButton(id, description, icon, callback, rightButtonsPanel, false, front, true) 
-end
-
-function addCustomLeftButton(id, description, icon, callback, front)
-  return addButton(id, description, icon, callback, leftButtonsPanel, false, front, true) 
 end
 
 function addRightButton(id, description, icon, callback, front)

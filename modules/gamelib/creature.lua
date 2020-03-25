@@ -27,6 +27,12 @@ EmblemGreen = 1
 EmblemRed = 2
 EmblemBlue = 3
 
+NpcIconNone = 0
+NpcIconChat = 1
+NpcIconTrade = 2
+NpcIconQuest = 3
+NpcIconTradeQuest = 4
+
 -- @}
 
 function getSkullImagePath(skullId)
@@ -52,23 +58,25 @@ function getShieldImagePathAndBlink(shieldId)
   if shieldId == ShieldWhiteYellow then
     path, blink = '/images/game/shields/shield_yellow_white', false
   elseif shieldId == ShieldWhiteBlue then
-    path, blink = '/images/game/shields//shield_blue_white', false
+    path, blink = '/images/game/shields/shield_blue_white', false
   elseif shieldId == ShieldBlue then
-    path, blink = '/images/game/shields//shield_blue', false
+    path, blink = '/images/game/shields/shield_blue', false
   elseif shieldId == ShieldYellow then
-    path, blink = '/images/game/shields//shield_yellow', false
+    path, blink = '/images/game/shields/shield_yellow', false
   elseif shieldId == ShieldBlueSharedExp then
-    path, blink = '/images/game/shields//shield_blue_shared', false
+    path, blink = '/images/game/shields/shield_blue_shared', false
   elseif shieldId == ShieldYellowSharedExp then
-    path, blink = '/images/game/shields//shield_yellow_shared', false
+    path, blink = '/images/game/shields/shield_yellow_shared', false
   elseif shieldId == ShieldBlueNoSharedExpBlink then
-    path, blink = '/images/game/shields//shield_blue_not_shared', true
+    path, blink = '/images/game/shields/shield_blue_not_shared', true
   elseif shieldId == ShieldYellowNoSharedExpBlink then
-    path, blink = '/images/game/shields//shield_yellow_not_shared', true
+    path, blink = '/images/game/shields/shield_yellow_not_shared', true
   elseif shieldId == ShieldBlueNoSharedExp then
-    path, blink = '/images/game/shields//shield_blue_not_shared', false
+    path, blink = '/images/game/shields/shield_blue_not_shared', false
   elseif shieldId == ShieldYellowNoSharedExp then
-    path, blink = '/images/game/shields//shield_yellow_not_shared', false
+    path, blink = '/images/game/shields/shield_yellow_not_shared', false
+  elseif shieldId == ShieldGray then
+    path, blink = '/images/game/shields/shield_gray', false
   end
   return path, blink
 end
@@ -81,6 +89,24 @@ function getEmblemImagePath(emblemId)
     path = '/images/game/emblems/emblem_red'
   elseif emblemId == EmblemBlue then
     path = '/images/game/emblems/emblem_blue'
+  elseif emblemId == EmblemMember then
+    path = '/images/game/emblems/emblem_member'
+  elseif emblemId == EmblemOther then
+    path = '/images/game/emblems/emblem_other'
+  end
+  return path
+end
+
+function getIconImagePath(iconId)
+  local path
+  if iconId == NpcIconChat then
+    path = '/images/game/npcicons/icon_chat'
+  elseif iconId == NpcIconTrade then
+    path = '/images/game/npcicons/icon_trade'
+  elseif iconId == NpcIconQuest then
+    path = '/images/game/npcicons/icon_quest'
+  elseif iconId == NpcIconTradeQuest then
+    path = '/images/game/npcicons/icon_tradequest'
   end
   return path
 end
@@ -103,5 +129,12 @@ function Creature:onEmblemChange(emblemId)
   local imagePath = getEmblemImagePath(emblemId)
   if imagePath then
     self:setEmblemTexture(imagePath)
+  end
+end
+
+function Creature:onIconChange(iconId)
+  local imagePath = getIconImagePath(iconId)
+  if imagePath then
+    self:setIconTexture(imagePath)
   end
 end

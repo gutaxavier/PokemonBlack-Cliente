@@ -23,19 +23,7 @@ function destroyWindows()
   windows = {}
 end
 
-function onGameEditText(id, itemId, maxLength, text, writer, time)
-
-
-  if not writeable then
-	if text:sub(1,1) == "P" and text:sub(2,2) == "o" and id ~= os.time() then
-
-		modules.game_console.doOpenDex(text,itemId,text)
-		return
-	end
-	text = text:gsub("Pokedex:\n\n",'')
-  end
-
-
+function onGameEditText(id, itemId, maxLength, text, writter, time)
   local textWindow = g_ui.createWidget('TextWindow', rootWidget)
 
   local writeable = #text < maxLength and maxLength > 0
@@ -47,10 +35,6 @@ function onGameEditText(id, itemId, maxLength, text, writer, time)
 
   local textScroll = textWindow:getChildById('textScroll')
 
-  if textItem:isHidden() then
-    textItem:show()
-  end
-
   textItem:setItemId(itemId)
   textEdit:setMaxLength(maxLength)
   textEdit:setText(text)
@@ -58,18 +42,13 @@ function onGameEditText(id, itemId, maxLength, text, writer, time)
   textEdit:setCursorVisible(writeable)
 
   local desc = ''
-  if writer == 0 then
-
-		desc = tr('Pokedex')
-  else
-	  if #writer > 0 then
-		desc = tr('You read the following, written by \n%s\n', writer)
-		if #time > 0 then
-		  desc = desc .. tr('on %s.\n', time)
-		end
-	  elseif #time > 0 then
-		desc = tr('You read the following, written on \n%s.\n', time)
-	  end
+  if #writter > 0 then
+    desc = tr('You read the following, written by \n%s\n', writter)
+    if #time > 0 then
+      desc = desc .. tr('on %s.\n', time)
+    end
+  elseif #time > 0 then
+    desc = tr('You read the following, written on \n%s.\n', time)
   end
 
   if #text == 0 and not writeable then
@@ -127,11 +106,6 @@ function onGameEditList(id, doorId, text)
   local description = textWindow:getChildById('description')
   local okButton = textWindow:getChildById('okButton')
   local cancelButton = textWindow:getChildById('cancelButton')
-
-  local textItem = textWindow:getChildById('textItem')
-  if textItem and not textItem:isHidden() then
-    textItem:hide()
-  end
 
   textEdit:setMaxLength(8192)
   textEdit:setText(text)

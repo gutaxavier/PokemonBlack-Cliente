@@ -1,5 +1,5 @@
 -- @docclass
-UICreatureButton = extends(UIWidget)
+UICreatureButton = extends(UIWidget, "UICreatureButton")
 
 local CreatureButtonColors = {
   onIdle = {notHovered = '#888888', hovered = '#FFFFFF' },
@@ -25,10 +25,6 @@ function UICreatureButton.create()
   return button
 end
 
-function UICreatureButton:getClassName()
-  return 'UICreatureButton'
-end
-
 function UICreatureButton:setCreature(creature)
     self.creature = creature
 end
@@ -43,17 +39,17 @@ end
 
 function UICreatureButton:setup(creature)
   self.creature = creature
-  
+
   local creatureWidget = self:getChildById('creature')
   local labelWidget = self:getChildById('label')
   local lifeBarWidget = self:getChildById('lifeBar')
-  
+
   labelWidget:setText(creature:getName())
   creatureWidget:setCreature(creature)
-  
+
   self:setId('CreatureButton_' .. creature:getName():gsub('%s','_'))
   self:setLifeBarPercent(creature:getHealthPercent())
-  
+
   self:updateSkull(creature:getSkull())
   self:updateEmblem(creature:getEmblem())
 end

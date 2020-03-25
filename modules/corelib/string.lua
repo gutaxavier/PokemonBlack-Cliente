@@ -20,8 +20,8 @@ function string:starts(start)
   return string.sub(self, 1, #start) == start
 end
 
-function string.ends(s, test)
-   return test =='' or string.sub(s,-string.len(test)) == test
+function string:ends(test)
+   return test =='' or string.sub(self,-string.len(test)) == test
 end
 
 function string:trim()
@@ -48,4 +48,12 @@ function string:explode(sep, limit)
   tmp = self:sub(pos):trim()
   table.insert(t, tmp)
   return t
+end
+
+function string:contains(str, checkCase, start, plain)
+  if(not checkCase) then
+    self = self:lower()
+    str = str:lower()
+  end
+  return string.find(self, str, start and start or 1, plain == nil and true or false)
 end

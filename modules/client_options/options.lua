@@ -3,7 +3,7 @@ local defaultOptions = {
   showFps = false,
   showPing = false,
   fullscreen = false,
-  classicControl = true,
+  classicControl = false,
   smartWalk = false,
   dashWalk = false,
   autoChaseOverride = true,
@@ -25,7 +25,8 @@ local defaultOptions = {
   ambientLight = 25,
   displayNames = true,
   displayHealth = true,
-  displayText = true
+  displayText = true,
+  dontStretchShrink = false
 }
 
 local optionsWindow
@@ -36,7 +37,6 @@ local generalPanel
 local consolePanel
 local graphicsPanel
 local soundPanel
-local redersPanel
 local audioButton
 
 local function setupGraphicsEngines()
@@ -109,9 +109,9 @@ function init()
   audioPanel = g_ui.loadUI('audio')
   optionsTabBar:addTab(tr('Audio'), audioPanel, '/images/optionstab/audio')
 
-  optionsButton = modules.client_topmenu.addCustomLeftButton('optionsButton', tr('Options'), '/images/ui/pxg/topMenu_icons/config_icon', toggle, false)
-  
-  audioButton = modules.client_topmenu.addCustomLeftButton('audioButton', tr('Audio'), '/images/ui/pxg/topMenu_icons/som_ligado', function() toggleOption('enableAudio') end, false)
+  optionsButton = modules.client_topmenu.addLeftButton('optionsButton', tr('Options'), '/images/topbuttons/options', toggle)
+  audioButton = modules.client_topmenu.addLeftButton('audioButton', tr('Audio'), '/images/topbuttons/audio', function() toggleOption('enableAudio') end)
+
   addEvent(function() setup() end)
 end
 
@@ -187,9 +187,9 @@ function setOption(key, value, force)
   elseif key == 'enableAudio' then
     g_sounds.setAudioEnabled(value)
     if value then
-      audioButton:setIcon('/images/ui/pxg/topMenu_icons/som_ligado')
+      audioButton:setIcon('/images/topbuttons/audio')
     else
-      audioButton:setIcon('/images/ui/pxg/topMenu_icons/som_desligado')
+      audioButton:setIcon('/images/topbuttons/audio_mute')
     end
   elseif key == 'enableMusicSound' then
     g_sounds.getChannel(SoundChannels.Music):setEnabled(value)
@@ -198,7 +198,6 @@ function setOption(key, value, force)
     audioPanel:getChildById('musicSoundVolumeLabel'):setText(tr('Music volume: %d', value))
   elseif key == 'showLeftPanel' then
     modules.game_interface.getLeftPanel():setOn(value)
-    modules.game_interface.getLeftPanel():setImageSource('/images/skins/None')
   elseif key == 'backgroundFrameRate' then
     local text, v = value, value
     if value <= 0 or value >= 201 then text = 'max' v = 0 end
@@ -225,9 +224,10 @@ function setOption(key, value, force)
     gameMapPanel:setDrawHealthBars(value)
   elseif key == 'displayText' then
     gameMapPanel:setDrawTexts(value)
-   if value then
-   else
-   end 
+  elseif key == 'dontStretchShrink' then
+    addEvent(function()
+      modules.game_interface.updateStretchShrink()
+    end)
   end
 
   -- change value for keybind updates

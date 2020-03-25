@@ -57,7 +57,7 @@ function UIItem:onHoverChange(hovered)
 
   local draggingWidget = g_ui.getDraggingWidget()
   if draggingWidget and self ~= draggingWidget then
-    local gotMap = draggingWidget:getClassName() == 'UIMap'
+    local gotMap = draggingWidget:getClassName() == 'UIGameMap'
     local gotItem = draggingWidget:getClassName() == 'UIItem' and not draggingWidget:isVirtual()
     if hovered and (gotItem or gotMap) then
       self:setBorderWidth(1)
@@ -86,7 +86,7 @@ function UIItem:onMouseRelease(mousePosition, mouseButton)
     g_game.look(item)
     self.cancelNextRelease = true
     return true
-  elseif modules.game_interface.processMouseAction(mousePosition, mouseButton, nil, item, item, nil, item) then
+  elseif modules.game_interface.processMouseAction(mousePosition, mouseButton, nil, item, item, nil, nil) then
     return true
   end
   return false

@@ -8,7 +8,7 @@ function init()
   background:lower()
 
   clientVersionLabel = background:getChildById('clientVersionLabel')
-  clientVersionLabel:setText("PokemonBlack Beta")
+  clientVersionLabel:setText("Pokemon Black\n By Gutinha")
 
   if not g_game.isOnline() then
     addEvent(function() g_effects.fadeIn(clientVersionLabel, 1500) end)

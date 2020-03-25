@@ -14,7 +14,7 @@ function reloadScripts()
   g_textures.clearCache()
   g_modules.reloadModules()
 
-  local script = '/' .. g_app.getCompactName() .. 'rc'
+  local script = '/' .. g_app.getCompactName() .. 'rc.lua'
   if g_resources.fileExists(script) then
     dofile(script)
   end
@@ -53,12 +53,11 @@ function startup()
 end
 
 function init()
-  connect(g_app, { onRun = startup, 
+  connect(g_app, { onRun = startup,
                    onExit = exit })
 
   g_window.setMinimumSize({ width = 600, height = 480 })
   g_sounds.preload(musicFilename)
-  g_game.enableFeature(GameMagicEffectU16)
 
   -- initialize in fullscreen mode on mobile devices
   if g_window.getPlatformType() == "X11-EGL" then
@@ -92,24 +91,19 @@ function init()
   g_keyboard.bindKeyDown('Ctrl+Shift+R', reloadScripts)
 
   -- generate machine uuid, this is a security measure for storing passwords
-  if not g_crypt.setMachineUUID(g_configs.get('uuid')) then
-    g_configs.set('uuid', g_crypt.getMachineUUID())
-    g_configs.save()
-  end                   
+  if not g_crypt.setMachineUUID(g_settings.get('uuid')) then
+    g_settings.set('uuid', g_crypt.getMachineUUID())
+    g_settings.save()
+  end
 end
 
 function terminate()
-  disconnect(g_app, { onRun = startup, 
+  disconnect(g_app, { onRun = startup,
                       onExit = exit })
   -- save window configs
   g_settings.set('window-size', g_window.getUnmaximizedSize())
   g_settings.set('window-pos', g_window.getUnmaximizedPos())
   g_settings.set('window-maximized', g_window.isMaximized())
-
-  local protocolVersion = g_game.getProtocolVersion()
-  if protocolVersion ~= 0 then
-    g_settings.set('protocol-version', protocolVersion)
-  end
 end
 
 function exit()

@@ -22,20 +22,37 @@ ShieldBlueNoSharedExpBlink = 7
 ShieldYellowNoSharedExpBlink = 8
 ShieldBlueNoSharedExp = 9
 ShieldYellowNoSharedExp = 10
+ShieldGray = 11
 
 EmblemNone = 0
 EmblemGreen = 1
 EmblemRed = 2
 EmblemBlue = 3
+EmblemMember = 4
+EmblemOther = 5
 
-North = 0
-East = 1
-South = 2
-West = 3
-NorthEast = 4
-SouthEast = 5
-SouthWest = 6
-NorthWest = 7
+VipIconFirst = 0
+VipIconLast = 10
+
+Directions = {
+  North = 0,
+  East = 1,
+  South = 2,
+  West = 3,
+  NorthEast = 4,
+  SouthEast = 5,
+  SouthWest = 6,
+  NorthWest = 7
+}
+
+North = Directions.North
+East = Directions.East
+South = Directions.South
+West = Directions.West
+NorthEast = Directions.NorthEast
+SouthEast = Directions.SouthEast
+SouthWest = Directions.SouthWest
+NorthWest = Directions.NorthWest
 
 FightOffensive = 1
 FightBalanced = 2
@@ -43,6 +60,11 @@ FightDefensive = 3
 
 DontChase = 0
 ChaseOpponent = 1
+
+PVPWhiteDove = 0
+PVPWhiteHand = 1
+PVPYellowHand = 2
+PVPRedFist = 3
 
 GameProtocolChecksum = 1
 GameAccountNames = 2
@@ -81,6 +103,23 @@ GameNewSpeedLaw = 36
 GameForceFirstAutoWalkStep = 37
 GameMinimapRemove = 38
 GameDoubleShopSellAmount = 39
+GameContainerPagination = 40
+GameThingMarks = 41
+GameLooktypeU16 = 42
+GamePlayerStamina = 43
+GamePlayerAddons = 44
+GameMessageStatements = 45
+GameMesssageLevel = 46
+GameNewFluids = 47
+GamePlayerStateU16 = 48
+GameNewOutfitProtocol = 49
+GamePVPMode = 50
+GameWritableDate = 51
+GameAdditionalVipInfo = 52
+GameSpritesAlphaChannel = 56
+GamePremiumExpiration = 57
+GameBrowseField = 58
+GameEnhancedAnimations = 59
 
 TextColors = {
   red       = '#f55e5e', --'#c83200'
@@ -162,7 +201,7 @@ CIPSOFT_RSA = "1321277432058722840622950990822933849527763264961655079678763618"
               "88792221429527047321331896351555606801473202394175817"
 
 -- set to the latest Tibia.pic signature to make otclient compatible with official tibia
-PIC_SIGNATURE = 0x50a6469d
+PIC_SIGNATURE = 0x53208400
 
 OsTypes = {
   Linux = 1,

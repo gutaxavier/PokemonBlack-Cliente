@@ -22,7 +22,6 @@ function init()
   end
 
   g_mouse.loadCursors('/cursors/cursors')
-  g_game.enableFeature(GameMagicEffectU16)
 end
 
 function terminate()

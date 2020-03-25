@@ -1,4 +1,4 @@
-UIGameMap = extends(UIMap)
+UIGameMap = extends(UIMap, "UIGameMap")
 
 function UIGameMap.create()
   local gameMap = UIGameMap.internalCreate()
@@ -60,9 +60,9 @@ function UIGameMap:onMouseRelease(mousePosition, mouseButton)
   if not self.allowNextRelease then
     return true
   end
-  
+
   local autoWalkPos = self:getPosition(mousePosition)
-  
+
   -- happens when clicking outside of map boundaries
   if not autoWalkPos then return false end
 
@@ -73,11 +73,12 @@ function UIGameMap:onMouseRelease(mousePosition, mouseButton)
     autoWalkPos.y = autoWalkPos.y + dz
     autoWalkPos.z = localPlayerPos.z
   end
-  
+
   local lookThing
   local useThing
   local creatureThing
   local multiUseThing
+  local attackCreature
 
   local tile = self:getTile(mousePosition)
   if tile then
@@ -86,7 +87,12 @@ function UIGameMap:onMouseRelease(mousePosition, mouseButton)
     creatureThing = tile:getTopCreature()
   end
 
-  local ret = modules.game_interface.processMouseAction(mousePosition, mouseButton, autoWalkPos, lookThing, useThing, creatureThing)
+  local autoWalkTile = g_map.getTile(autoWalkPos)
+  if autoWalkTile then
+    attackCreature = autoWalkTile:getTopCreature()
+  end
+
+  local ret = modules.game_interface.processMouseAction(mousePosition, mouseButton, autoWalkPos, lookThing, useThing, creatureThing, attackCreature)
   if ret then
     self.allowNextRelease = false
   end

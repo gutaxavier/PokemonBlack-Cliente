@@ -5,7 +5,6 @@ local defaultLocaleName = 'en'
 local installedLocales
 local currentLocale
 
-
 function sendLocale(localeName)
   local protocolGame = g_game.getProtocolGame()
   if protocolGame then
@@ -14,7 +13,6 @@ function sendLocale(localeName)
   end
   return false
 end
-
 
 function createWindow()
   localesWindow = g_ui.displayUI('locales')
@@ -38,126 +36,6 @@ function createWindow()
   addEvent(function() addEvent(function() localesWindow:raise() localesWindow:focus() end) end)
 end
 
-local skins = {"None", "Alakazam", "Arcanine", "Blastoise", "Charizard", "Crobat", "Electabuzz", "Farfetchd", "Gyarados", "Hitmonchan", "Jynx", "Lapras", "Marowak", "Droganite", "Pidgeot", "Scizor"}
-function createWindowSkin()
-  localesWindow = g_ui.displayUI('locales2')
-  local localesPanel = localesWindow:getChildById('localesPanel')
-  local layout = localesPanel:getLayout()
-  local spacing = layout:getCellSpacing()
-  local size = layout:getCellSize()
-
-  local count = 0
-  for name, locale in pairs(skins) do
-  
-          if locale == "Scizor" then
-              local widget = g_ui.createWidget('LocalesButton', localesPanel)
-              widget:setImageSource('/images/skins/None')
-              widget:setText("Pagina 2")
-              widget.onClick =  function() setSkin2(localesWindow) end
-              break
-          end
-          
-    local widget = g_ui.createWidget('LocalesButton', localesPanel)
-    widget:setImageSource('/images/skins/' .. locale .. '')
-    widget:setText(locale)
-    widget.onClick =  function() setSkin(locale, localesWindow) end
-    count = count + 1
-  end 
-
-  localesPanel:setWidth(size.width * 8)
-  localesPanel:setHeight(size.height * 20)
-
-  addEvent(function() addEvent(function() localesWindow:raise() localesWindow:focus() end) end)
-end
-local skins2 = {"None", "Scizor", "Scyther", "Smeargle", "Steelix", "Venusaur", "GardeStrike_Female", "GardeStrike_Male", "Malefic_Female", "Malefic_Male", "Naturia_Female", "Naturia_Male", "Orebound_Female", "Orebound_Male", "PsyCraft_Female", "PsyCraft_Male"}
-
-function createWindowSkin2()
-  localesWindow = g_ui.displayUI('locales2')
-  local localesPanel = localesWindow:getChildById('localesPanel')
-  local layout = localesPanel:getLayout()
-  local spacing = layout:getCellSpacing()
-  local size = layout:getCellSize()
-
-  local count = 0
-  for name, locale in pairs(skins2) do
-  
-            if locale == "PsyCraft_Male" then
-              local widget = g_ui.createWidget('LocalesButton', localesPanel)
-              widget:setImageSource('/images/skins/None')
-              widget:setText("Pagina 3")
-              widget.onClick =  function() setSkin3(localesWindow) end
-              break
-          end
-          
-    local widget = g_ui.createWidget('LocalesButton', localesPanel)
-    widget:setImageSource('/images/skins/' .. locale .. '')
-    widget:setText(locale)
-    widget.onClick =  function() setSkin(locale, localesWindow) end
-    count = count + 1
-         if locale == "None" then
-              widget:setImageSource('/images/skins/None')
-              widget:setText("Pagina 1")
-              widget.onClick =  function() setSkin4(localesWindow) end
-         end
-  end 
-
-  localesPanel:setWidth(size.width * 8)
-  localesPanel:setHeight(size.height * 20)
-
-  addEvent(function() addEvent(function() localesWindow:raise() localesWindow:focus() end) end)
-end
-local skins3 = {"PsyCraft_Male", "Raibolt_Female", "Raibolt_Male", "Seavell_Female", "Seavell_Male", "Volcanic_Female", "Volcanic_Male", "Wingeon_Female", "Wingeon_Male"}
-function createWindowSkin3()
-  localesWindow = g_ui.displayUI('locales2')
-  local localesPanel = localesWindow:getChildById('localesPanel')
-  local layout = localesPanel:getLayout()
-  local spacing = layout:getCellSpacing()
-  local size = layout:getCellSize()
-
-  local count = 0
-  for name, locale in pairs(skins3) do
-    
-    local widget = g_ui.createWidget('LocalesButton', localesPanel)
-    widget:setImageSource('/images/skins/' .. locale .. '')
-    widget:setText(locale)
-    widget.onClick =  function() setSkin(locale, localesWindow) end
-    count = count + 1
-              if locale == "Wingeon_Male" then
-                  local widget = g_ui.createWidget('LocalesButton', localesPanel)
-                  widget:setImageSource('/images/skins/None')
-                  widget:setText("Pagina 2")
-                  widget.onClick =  function() setSkin2(localesWindow) end
-              end
-  end 
-
-  localesPanel:setWidth(size.width * 8)
-  localesPanel:setHeight(size.height * 20)
-
-  addEvent(function() addEvent(function() localesWindow:raise() localesWindow:focus() end) end)
-end
-
-function setSkin(name, localesWindow)
-   modules.game_interface.getRightPanel():setImageSource('/images/skins/' .. name .. '')
-    if modules.game_interface.getLeftPanel():isVisible() then
-       modules.game_interface.getLeftPanel():setImageSource('/images/skins/' .. name .. '')
-    end
-   localesWindow:destroy()
-   modules.client_options.hide()
-end
-function setSkin2(localesWindow)
-   localesWindow:destroy()
-   createWindowSkin2()
-end
-function setSkin3(localesWindow)
-   localesWindow:destroy()
-   createWindowSkin3()
-end
-function setSkin4(localesWindow)
-   localesWindow:destroy()
-   createWindowSkin()
-end
-
-----------------/\
 function selectFirstLocale(name)
   if localesWindow then
     localesWindow:destroy()

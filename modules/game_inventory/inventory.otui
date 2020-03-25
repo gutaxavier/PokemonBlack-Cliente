@@ -32,7 +32,7 @@ LeftSlot < InventoryItem
 
 FingerSlot < InventoryItem
   id: slot9
-  image-source: /images/game/slots/bike
+  image-source: /images/game/slots/finger
   &position: {x=65535, y=9, z=0}
 
 BackSlot < InventoryItem

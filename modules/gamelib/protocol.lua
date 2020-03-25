@@ -188,5 +188,5 @@ ClientOpcodes = {
     ClientMarketCreate                  = 246, -- 944
     ClientMarketCancel                  = 247, -- 944
     ClientMarketAccept                  = 248, -- 944
-    ClientAnswerModalDialog             = 249 -- 960
+    ClientAnswerModalDialog             = 249  -- 960
 }
